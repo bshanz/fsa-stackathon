@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>FS App Template</h1>
+      <h1>Must Reads</h1>
       {auth.id ? <Home /> : <Login />}
       {!!auth.id && (
         <div>
