@@ -9,11 +9,14 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
-      <div>
+      <div className="welcome-container">
         Welcome {auth.username}!!
-        <button onClick={() => dispatch(logout())}>Logout</button>
+        <button className="logout-button" onClick={() => dispatch(logout())}>
+          Logout
+        </button>
       </div>
       <Link to="/posts">View Posts</Link>
+      <Link to="/createpost">Create Post</Link>
     </div>
   );
 };

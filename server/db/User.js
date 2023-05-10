@@ -4,29 +4,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const JWT = process.env.JWT;
 
-// const User = conn.define('user', {
-//   id: {
-//     type: UUID,
-//     primaryKey: true,
-//     defaultValue: UUIDV4
-//   },
-//   username: {
-//     type: STRING,
-//     allowNull: false,
-//     validate: {
-//       notEmpty: true
-//     },
-//     unique: true
-//   },
-//   password: {
-//     type: STRING,
-//     allowNull: false,
-//     validate: {
-//       notEmpty: true
-//     }
-//   }
-// });
-
 const User = conn.define("user", {
   id: {
     type: UUID,

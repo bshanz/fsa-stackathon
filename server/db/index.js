@@ -37,23 +37,27 @@ const syncAndSeed = async () => {
 
   const [moePost1, lucyPost1, larryPost1, ethylPost1] = await Promise.all([
     Post.create({
+      title: "Moe's First Post",
       url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
-      comment: "This is Moe's first post!",
+      description: "This is Moe's first post!",
       userId: moe.id,
     }),
     Post.create({
+      title: "Lucy's First Post",
       url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
-      comment: "This is Lucy's first post!",
+      description: "This is Lucy's first post!",
       userId: lucy.id,
     }),
     Post.create({
+      title: "Larry's First Post",
       url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
-      comment: "This is Larry's first post!",
+      description: "This is Larry's first post!",
       userId: larry.id,
     }),
     Post.create({
+      title: "Ethyl's First Post",
       url: "https://www.nytimes.com/interactive/2023/05/10/opinion/nyc-office-vacancy-playground-city.html",
-      comment: "This is Ethyl's first post!",
+      description: "This is Ethyl's first post!",
       userId: ethyl.id,
     }),
   ]);

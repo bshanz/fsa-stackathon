@@ -13,4 +13,15 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
+// Route to create a new post
+router.post("/createpost", isLoggedIn, async (req, res, next) => {
+  try {
+    const { url, description } = req.body;
+    const newPost = await Post.create({ url, description });
+    res.status(201).send(newPost);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 module.exports = router;

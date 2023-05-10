@@ -6,15 +6,38 @@ import {
   // selectPostById,
   // addNewPost,
 } from "../store/postSlice";
+import { ReactTinyLink } from "react-tiny-link";
+import { Link } from "react-router-dom";
 
-const Post = ({ post }) => (
-  <article className="post">
-    <h3>{post.comment}</h3>
-    <p>
-      <a href={post.url}>{post.url}</a>
-    </p>
-  </article>
-);
+const Post = ({ post }) => {
+  console.log("post", post);
+  return (
+    <article className="post">
+      <h2>{post.userId}</h2>
+      <ReactTinyLink
+        cardSize="small"
+        showGraphic={false}
+        maxLine={2}
+        minLine={1}
+        url={post.url}
+        proxyUrl="https://cors-anywhere.herokuapp.com/"
+      >
+        {(data, isLoading) => {
+          if (isLoading) {
+            return <div>Loading...</div>;
+          }
+          return (
+            <>
+              <p>{data.title}</p>
+              <p>{data.description}</p>
+            </>
+          );
+        }}
+      </ReactTinyLink>
+      <p>{post.description}</p>
+    </article>
+  );
+};
 
 export const PostsList = () => {
   const dispatch = useDispatch();
@@ -41,6 +64,7 @@ export const PostsList = () => {
   return (
     <section className="posts-list">
       <h2>Posts</h2>
+      <Link to="/">Go back to Home</Link>
       {content}
     </section>
   );

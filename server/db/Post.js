@@ -20,6 +20,10 @@ const Post = conn.define("post", {
     type: TEXT,
     allowNull: true, // assuming comments are optional
   },
+  title: {
+    type: STRING,
+    allowNull: true, // assuming title is optional
+  },
 });
 
 Post.belongsTo(User); // sets up the foreign key for UserId

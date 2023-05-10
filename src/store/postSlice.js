@@ -19,7 +19,7 @@ export const addNewPost = createAsyncThunk(
   "posts/addNewPost",
   async (initialPost) => {
     const token = window.localStorage.getItem("token");
-    const response = await axios.post("/api/posts", initialPost, {
+    const response = await axios.post("/api/createpost", initialPost, {
       headers: { Authorization: token },
     });
     return response.data;

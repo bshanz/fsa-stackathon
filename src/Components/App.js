@@ -5,6 +5,7 @@ import { loginWithToken } from "../store/auth";
 import Home from "./Home";
 import Login from "./Login";
 import { PostsList } from "./PostsList";
+import CreatePost from "./CreatePost";
 
 const App = () => {
   const auth = useSelector((state) => state.auth);
@@ -27,6 +28,7 @@ const App = () => {
           element={auth.id ? <Home /> : <Navigate to="/login" />}
         />
         <Route path="/posts" element={<PostsList />} />
+        <Route path="/createpost" element={<CreatePost />} />
       </Routes>
     </div>
   );
