@@ -1,18 +1,18 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const auth = (state = {}, action) => {
-  if (action.type === "SET_AUTH") {
-    return action.auth;
+
+export const attemptLogin = createAsyncThunk(
+  "auth/attemptLogin",
+  async (credentials, { dispatch }) => {
+    const response = await axios.post("/api/auth", credentials);
+    await window.localStorage.setItem("token", response.data);
+    dispatch(loginWithToken());
   }
-  return state;
-};
+);
 
-export const logout = () => {
-  window.localStorage.removeItem("token");
-  return { type: "SET_AUTH", auth: {} };
-};
-
-export const loginWithToken = () => {
-  return async (dispatch) => {
+export const loginWithToken = createAsyncThunk(
+  "auth/loginWithToken",
+  async () => {
     const token = window.localStorage.getItem("token");
     if (token) {
       const response = await axios.get("/api/auth", {
@@ -20,25 +20,32 @@ export const loginWithToken = () => {
           authorization: token,
         },
       });
-      dispatch({ type: "SET_AUTH", auth: response.data });
+      return response.data;
     }
-  };
-};
+  }
+);
 
-export const attemptLogin = (credentials) => {
-  return async (dispatch) => {
-    const response = await axios.post("/api/auth", credentials);
-    window.localStorage.setItem("token", response.data);
-    dispatch(loginWithToken());
-  };
-};
+export const logout = createAsyncThunk("auth/logout", async () => {
+  window.localStorage.removeItem("token");
+  return {};
+});
 
-export const register = (credentials) => {
-  return async (dispatch) => {
-    const response = await axios.post("/api/auth/register", credentials);
-    window.localStorage.setItem("token", response.data);
-    dispatch(loginWithToken());
-  };
-};
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {},
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(attemptLogin.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(loginWithToken.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        return action.payload;
+      });
+  },
+});
 
-export default auth;
+export default authSlice.reducer;

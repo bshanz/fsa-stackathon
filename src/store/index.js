@@ -1,14 +1,18 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import auth from './auth';
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./auth";
+import postReducer from "./postSlice"; // Import the posts reducer
 
-const reducer = combineReducers({
-  auth,
+const store = configureStore({
+  reducer: {
+    auth: authReducer,
+    posts: postReducer, // Add the posts reducer to the store configuration
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
-const store = createStore(reducer, applyMiddleware(thunk, logger));
-
 export default store;
-
-export * from './auth';
+export * from "./auth";
+export * from "./postSlice"; // Export everything from postSlice

@@ -1,5 +1,6 @@
 const conn = require("./conn");
 const User = require("./User");
+const Post = require("./Post"); // import the Post model
 
 const syncAndSeed = async () => {
   await conn.sync({ force: true });
@@ -34,6 +35,29 @@ const syncAndSeed = async () => {
     }),
   ]);
 
+  const [moePost1, lucyPost1, larryPost1, ethylPost1] = await Promise.all([
+    Post.create({
+      url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
+      comment: "This is Moe's first post!",
+      userId: moe.id,
+    }),
+    Post.create({
+      url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
+      comment: "This is Lucy's first post!",
+      userId: lucy.id,
+    }),
+    Post.create({
+      url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
+      comment: "This is Larry's first post!",
+      userId: larry.id,
+    }),
+    Post.create({
+      url: "https://www.nytimes.com/interactive/2023/05/10/opinion/nyc-office-vacancy-playground-city.html",
+      comment: "This is Ethyl's first post!",
+      userId: ethyl.id,
+    }),
+  ]);
+
   return {
     users: {
       moe,
@@ -41,10 +65,17 @@ const syncAndSeed = async () => {
       larry,
       ethyl,
     },
+    posts: {
+      moePost1,
+      lucyPost1,
+      larryPost1,
+      ethylPost1,
+    },
   };
 };
 
 module.exports = {
   syncAndSeed,
   User,
+  Post,
 };

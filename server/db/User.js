@@ -113,5 +113,3 @@ User.authenticate = async function ({ username, password }) {
 };
 
 module.exports = User;
-
-/////
