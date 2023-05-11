@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchPosts,
-  selectAllPosts,
-  // selectPostById,
-  // addNewPost,
-} from "../store/postSlice";
+import { fetchPosts, selectAllPosts } from "../store/postSlice";
 import { ReactTinyLink } from "react-tiny-link";
 import { Link } from "react-router-dom";
 
@@ -14,26 +9,9 @@ const Post = ({ post }) => {
   return (
     <article className="post">
       <h2>{post.userId}</h2>
-      <ReactTinyLink
-        cardSize="small"
-        showGraphic={false}
-        maxLine={2}
-        minLine={1}
-        url={post.url}
-        proxyUrl="https://cors-anywhere.herokuapp.com/"
-      >
-        {(data, isLoading) => {
-          if (isLoading) {
-            return <div>Loading...</div>;
-          }
-          return (
-            <>
-              <p>{data.title}</p>
-              <p>{data.description}</p>
-            </>
-          );
-        }}
-      </ReactTinyLink>
+      <a href={post.url} target="_blank" rel="noopener noreferrer">
+        {post.url}
+      </a>
       <p>{post.description}</p>
     </article>
   );
@@ -44,12 +22,14 @@ export const PostsList = () => {
   const posts = useSelector(selectAllPosts);
   const postStatus = useSelector((state) => state.posts.status);
   const error = useSelector((state) => state.posts.error);
+  const postAdded = useSelector((state) => state.posts.postAdded); // add new state selector
 
   useEffect(() => {
-    if (postStatus === "idle") {
+    if (postStatus === "idle" || postAdded) {
+      // add postAdded as a dependency
       dispatch(fetchPosts());
     }
-  }, [postStatus, dispatch]);
+  }, [postStatus, dispatch, postAdded]); // add postAdded as a dependency
 
   let content;
 
@@ -62,9 +42,11 @@ export const PostsList = () => {
   }
 
   return (
-    <section className="posts-list">
-      <h2>Posts</h2>
-      <Link to="/">Go back to Home</Link>
+    <section className="container">
+      <h1>Posts</h1>
+      <Link to="/" className="link">
+        Go back to Home
+      </Link>
       {content}
     </section>
   );

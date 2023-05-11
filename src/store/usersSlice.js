@@ -2,39 +2,53 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  users: [],
+  user: null,
   status: "idle",
   error: null,
 };
 
-export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
+export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   const token = window.localStorage.getItem("token");
-  const response = await axios.get("/api/users", {
+  const response = await axios.get("/api/user", {
     headers: { Authorization: token },
   });
   return response.data;
 });
 
-const usersSlice = createSlice({
-  name: "users",
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (updatedUser) => {
+    const token = window.localStorage.getItem("token");
+    const response = await axios.put("/api/user", updatedUser, {
+      headers: { Authorization: token },
+    });
+    return response.data;
+  }
+);
+
+const userSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state) => {
+      .addCase(fetchUser.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.users = action.payload;
+        state.user = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
+      .addCase(fetchUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
       });
   },
 });
 
-export default usersSlice.reducer;
+export default userSlice.reducer;
 
-export const selectAllUsers = (state) => state.users.users;
+export const selectUser = (state) => state.user.user;

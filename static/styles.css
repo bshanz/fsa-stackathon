@@ -1,201 +1,105 @@
-/* App.css */
-* {
-  box-sizing: border-box;
+body {
   font-family: Arial, sans-serif;
-}
-
-h1 {
-  text-align: center;
+  background-color: #f4f4f4;
+  color: #333;
   margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #f0f0f0;
 }
 
-/* Home.css */
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+h1,
+h2 {
+  color: #444;
 }
 
-.home-container div {
-  margin-top: 20px;
-}
-
-.home-container button {
-  margin-left: 10px;
-}
-
-/* Login.css */
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-form-title {
-  margin-top: 50px;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-input {
-  margin-top: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.login-button {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 5px;
+button {
+  padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.login-button:hover {
-  background-color: #0069d9;
+button:disabled {
+  background-color: #ccc;
 }
 
-/* PostsList.css */
-.posts-list {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+button.logout-button {
+  background-color: #dc3545;
 }
 
-.post {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 80%;
-}
-
-.post h3 {
-  margin-top: 0;
-}
-
-.comment-section {
-  margin-top: 20px;
-}
-
-.comment {
-  margin-top: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-}
-
-.comment p.author {
-  font-style: italic;
-  margin-top: 5px;
+.link {
+  color: #007bff;
+  text-decoration: none;
 }
 
 .loader {
-  margin-top: 50px;
-  font-size: 20px;
-}
-
-/* LinkPreview.css */
-.link-preview {
   display: flex;
-  margin-top: 10px;
-  align-items: center;
-}
-
-.link-preview img {
-  width: 80px;
-  height: 80px;
-  margin-right: 10px;
-  border-radius: 5px;
-}
-
-.link-preview-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.link-preview-text p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.link-preview-text p.title {
-  font-weight: bold;
-}
-
-.link-preview-text p.description {
-  color: #666;
-}
-
-.welcome-container {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  height: 100vh;
 }
 
-.logout-button {
-  margin-left: 10px;
-  padding: 5px 10px;
+.post {
+  background-color: #fff;
   border-radius: 5px;
-  background-color: #f44336;
-  color: #fff;
-  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
-.logout-button:hover {
-  background-color: #c62828;
+.login-container,
+.create-post-form {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
+.login-form,
 .create-post-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
+.login-input,
 .form-control {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ced4da;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-.btn {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 0.25rem;
-  background-color: #007bff;
+.navbar {
+  background-color: #333;
   color: #fff;
-  border: none;
-  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
 }
 
-.btn:hover {
-  background-color: #0069d9;
+.navbar-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin: 0 10px;
+}
+
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-link:hover {
+  text-decoration: underline;
 }

@@ -19,7 +19,8 @@ export const addNewPost = createAsyncThunk(
   "posts/addNewPost",
   async (initialPost) => {
     const token = window.localStorage.getItem("token");
-    const response = await axios.post("/api/createpost", initialPost, {
+    const response = await axios.post("/api/posts/createpost", initialPost, {
+      // corrected URL
       headers: { Authorization: token },
     });
     return response.data;
@@ -38,13 +39,22 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.posts = action.payload;
+        state.postAdded = false;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
+      .addCase(addNewPost.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(addNewPost.fulfilled, (state, action) => {
         state.posts.push(action.payload);
+        state.postAdded = true;
+      })
+      .addCase(addNewPost.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });

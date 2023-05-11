@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
+import Navbar from "./Navbar";
 
 const Home = () => {
   const { auth } = useSelector((state) => state);
@@ -15,8 +16,7 @@ const Home = () => {
           Logout
         </button>
       </div>
-      <Link to="/posts">View Posts</Link>
-      <Link to="/createpost">Create Post</Link>
+      <Navbar />
     </div>
   );
 };

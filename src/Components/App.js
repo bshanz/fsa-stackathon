@@ -17,7 +17,6 @@ const App = () => {
 
   return (
     <div>
-      <h1>Must Reads</h1>
       <Routes>
         <Route
           path="/login"

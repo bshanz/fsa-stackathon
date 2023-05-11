@@ -20,6 +20,7 @@ router.post("/createpost", isLoggedIn, async (req, res, next) => {
     const newPost = await Post.create({ url, description });
     res.status(201).send(newPost);
   } catch (ex) {
+    console.error("Error occurred while creating post:", ex); // Log the error
     next(ex);
   }
 });
