@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts, selectAllPosts } from "../store/postSlice";
-import { ReactTinyLink } from "react-tiny-link";
 import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   console.log("post", post);
   return (
     <article className="post">
-      <h2>{post.userId}</h2>
+      <h2>{post.user.firstName}</h2>
       <a href={post.url} target="_blank" rel="noopener noreferrer">
         {post.url}
       </a>

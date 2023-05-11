@@ -43,8 +43,17 @@ const userSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
+      // Handle update user action
+      .addCase(updateUser.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.status = "succeeded";
+        state.user = { ...state.user, ...action.payload }; // assuming the payload is the updated user data
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });

@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { Post } = require("../db");
+const { Post, User } = require("../db");
 const { isLoggedIn } = require("./middleware");
 
 // Route to get all posts
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      include: User, // Join User model
+    });
     res.send(posts);
   } catch (ex) {
     next(ex);
@@ -16,11 +18,16 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 // Route to create a new post
 router.post("/createpost", isLoggedIn, async (req, res, next) => {
   try {
-    const { url, description } = req.body;
-    const newPost = await Post.create({ url, description });
+    const { userId, url, description } = req.body;
+    const user = await User.findByPk(userId); // Find the user by ID
+    const newPost = await Post.create({
+      userId,
+      url,
+      description,
+      userName: user.firstName,
+    }); // Include the user's first name
     res.status(201).send(newPost);
   } catch (ex) {
-    console.error("Error occurred while creating post:", ex); // Log the error
     next(ex);
   }
 });
