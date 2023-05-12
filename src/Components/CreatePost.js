@@ -16,8 +16,18 @@ const CreatePost = () => {
   const onUrlChanged = (e) => setUrl(e.target.value);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
 
+  const urlRegex = new RegExp(
+    "^(https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?" + // port
+      "(\\/[-a-z\\d%_.~+]*)*" + // path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i" // fragment locator
+  );
+
   const onSubmit = (e) => {
-    e.preventDefault();
     dispatch(addNewPost({ userId, url, description })); // include userId
     setUrl("");
     setDescription("");
@@ -50,6 +60,7 @@ const CreatePost = () => {
             value={description}
             onChange={onDescriptionChanged}
             className="form-control"
+            // add pattern and required
           />
         </div>
         <button
