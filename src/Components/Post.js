@@ -17,7 +17,7 @@ const Post = ({ post }) => {
   return (
     <article className="post">
       <h2>{post.title}</h2>
-      <h3>{post.user.firstName}</h3>
+      <h3>{`Posted by: ${post.user.firstName}`}</h3>
       <a href={post.url} target="_blank" rel="noopener noreferrer">
         <img
           className="post-image"
