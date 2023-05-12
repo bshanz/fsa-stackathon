@@ -27,6 +27,31 @@ export const addNewPost = createAsyncThunk(
   }
 );
 
+// New thunk for editing a post
+export const editPost = createAsyncThunk(
+  "posts/editPost",
+  async ({ id, url, description }) => {
+    const token = window.localStorage.getItem("token");
+    const response = await axios.put(
+      `/api/posts/editpost/${id}`,
+      { url, description },
+      {
+        headers: { Authorization: token },
+      }
+    );
+    return response.data;
+  }
+);
+
+// New thunk for deleting a post
+export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
+  const token = window.localStorage.getItem("token");
+  const response = await axios.delete(`/api/posts/deletepost/${id}`, {
+    headers: { Authorization: token },
+  });
+  return id;
+});
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -53,6 +78,37 @@ const postsSlice = createSlice({
         state.postAdded = true;
       })
       .addCase(addNewPost.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      // Handle editing a post
+      .addCase(editPost.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        // Find the post that needs to be updated, and update it
+        const existingPost = state.posts.find(
+          (post) => post.id === action.payload.id
+        );
+        if (existingPost) {
+          existingPost.url = action.payload.url;
+          existingPost.description = action.payload.description;
+        }
+      })
+      .addCase(editPost.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(deletePost.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        // Remove the deleted post from state
+        state.posts = state.posts.filter((post) => post.id !== action.payload);
+      })
+      .addCase(deletePost.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

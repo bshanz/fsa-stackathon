@@ -3,18 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts, selectAllPosts } from "../store/postSlice";
 import { Link } from "react-router-dom";
 
-const Post = ({ post }) => {
-  console.log("post", post);
-  return (
-    <article className="post">
-      <h2>{post.user.firstName}</h2>
-      <a href={post.url} target="_blank" rel="noopener noreferrer">
-        {post.url}
-      </a>
-      <p>{post.description}</p>
-    </article>
-  );
-};
+import Post from "./Post";
 
 export const PostsList = () => {
   const dispatch = useDispatch();
@@ -28,7 +17,7 @@ export const PostsList = () => {
       // add postAdded as a dependency
       dispatch(fetchPosts());
     }
-  }, [postStatus, dispatch, postAdded]); // add postAdded as a dependency
+  }, [dispatch, postAdded]); // add postAdded as a dependency
 
   let content;
 

@@ -6,6 +6,7 @@ import Home from "./Home";
 import Login from "./Login";
 import { PostsList } from "./PostsList";
 import CreatePost from "./CreatePost";
+import EditPostForm from "./EditPostForm";
 
 const App = () => {
   const auth = useSelector((state) => state.auth);
@@ -28,6 +29,7 @@ const App = () => {
         />
         <Route path="/posts" element={<PostsList />} />
         <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/editpost/:id" element={<EditPostForm />} />
       </Routes>
     </div>
   );
