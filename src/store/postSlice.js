@@ -31,6 +31,7 @@ export const addNewPost = createAsyncThunk(
 export const editPost = createAsyncThunk(
   "posts/editPost",
   async ({ id, url, description }) => {
+    console.log(`wwwwwwwwwwwwwwwwww ${id}`);
     const token = window.localStorage.getItem("token");
     const response = await axios.put(
       `/api/posts/editpost/${id}`,

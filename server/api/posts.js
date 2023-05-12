@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Post, User } = require("../db");
 const { isLoggedIn } = require("./middleware");
+const { getMetaData } = require("../Utils/helpers");
 
 // Route to get all posts
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -19,11 +20,15 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 router.post("/createpost", isLoggedIn, async (req, res, next) => {
   try {
     const { userId, url, description } = req.body;
+    const { data } = await getMetaData(url);
+    console.log(`eweeeeeeeeeeeeeeeeeee ${data.title}`);
     const user = await User.findByPk(userId); // Find the user by ID
     const newPost = await Post.create({
       userId,
-      url,
-      description,
+      url: data.url,
+      description: data.description,
+      title: data.title,
+      image: data.image,
       userName: user.firstName,
     }); // Include the user's first name
     res.status(201).send(newPost);

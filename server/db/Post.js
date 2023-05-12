@@ -24,6 +24,14 @@ const Post = conn.define("post", {
     type: STRING,
     allowNull: true, // assuming title is optional
   },
+  image: {
+    type: STRING,
+    allowNull: true,
+  },
+  comment: {
+    type: TEXT,
+    allowNull: true,
+  },
 });
 
 Post.belongsTo(User); // sets up the foreign key for UserId

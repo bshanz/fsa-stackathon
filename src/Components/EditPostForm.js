@@ -4,8 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { editPost, selectPostById } from "../store/postSlice";
 
 const EditPostForm = () => {
-  const { postId } = useParams();
-  const post = useSelector((state) => selectPostById(state, postId));
+  const { id } = useParams();
+  const post = useSelector((state) => selectPostById(state, id));
 
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
@@ -25,7 +25,7 @@ const EditPostForm = () => {
 
   const onSavePostClicked = async () => {
     if (url && description) {
-      dispatch(editPost({ id: postId, url, description }));
+      dispatch(editPost({ id: id, url, description }));
       navigate("/");
     }
   };
