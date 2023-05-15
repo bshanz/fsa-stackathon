@@ -54,7 +54,7 @@ const Register = () => {
             Register
           </button>
           <Link to="/login" className="secondary-btn">
-            Login
+            Already have an account? Login
           </Link>
         </div>
       </form>

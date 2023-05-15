@@ -8,12 +8,15 @@ const Home = () => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className="container">
       <h1>Home</h1>
       <Navbar />
-      <div className="welcome-container">
-        Welcome {auth.username}!!
-        <button className="logout-button" onClick={() => dispatch(logout())}>
+      <div className="welcome-container login-container">
+        <h2>Welcome {auth.username}!!</h2>
+        <button
+          className="logout-button btn"
+          onClick={() => dispatch(logout())}
+        >
           Logout
         </button>
       </div>
