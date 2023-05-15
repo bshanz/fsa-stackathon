@@ -18,4 +18,6 @@ app.use("/api/posts", require("./api/posts"));
 
 app.use("/api/register", require("./api/register"));
 
+app.use("/api/user", require("./api/user"));
+
 module.exports = app;

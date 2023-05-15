@@ -20,6 +20,11 @@ const Navbar = () => {
             Create Post
           </Link>
         </li>
+        <li className="navbar-item">
+          <Link to="/user" className="navbar-link">
+            Update Profile
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -33,6 +33,9 @@ button:disabled {
 button.logout-button {
   background-color: #dc3545;
 }
+.logout-button:hover {
+  background-color: #a32a36;
+}
 
 .link {
   color: #007bff;
@@ -94,7 +97,7 @@ button.logout-button {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  width: 40%;
+  width: 60%;
 }
 
 .navbar-item {
