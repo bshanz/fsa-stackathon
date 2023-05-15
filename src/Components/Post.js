@@ -26,7 +26,7 @@ const Post = ({ post }) => {
         />
       </a>
 
-      <p>{post.description}</p>
+      <p>Post description: {post.description}</p>
       {userIsAuthor && (
         <>
           <button onClick={handleDelete}>Delete</button>

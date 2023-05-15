@@ -53,10 +53,13 @@ const syncAndSeed = async () => {
 
   const [moePost1, lucyPost1, larryPost1, ethylPost1] = await Promise.all([
     Post.create({
-      title: "Moe's First Post",
-      url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
-      description: "This is Moe's first post!",
+      title:
+        "The open-source AI boom is built on Big Tech’s handouts. How long will it last?",
+      url: "https://www.technologyreview.com/2023/05/12/1072950/open-source-ai-google-openai-eleuther-meta/",
+      description:
+        "Greater access to the code behind generative models is fueling innovation. But if top companies get spooked, they could close up shop.",
       userId: moe.id,
+      image: "https://source.unsplash.com/mWztzk66I7Q",
     }),
     Post.create({
       title: "Lucy's First Post",
