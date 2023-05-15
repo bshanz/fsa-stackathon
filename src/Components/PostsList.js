@@ -7,7 +7,7 @@ import Post from "./Post";
 
 export const PostsList = () => {
   const dispatch = useDispatch();
-  const posts = useSelector(selectAllPosts);
+  let posts = useSelector(selectAllPosts);
   const postStatus = useSelector((state) => state.posts.status);
   const error = useSelector((state) => state.posts.error);
   const postAdded = useSelector((state) => state.posts.postAdded); // add new state selector
@@ -24,7 +24,11 @@ export const PostsList = () => {
   if (postStatus === "loading") {
     content = <div className="loader">Loading...</div>;
   } else if (postStatus === "succeeded") {
-    content = posts.map((post) => <Post key={post.id} post={post} />);
+    // Create a new sorted array
+    const sortedPosts = [...posts].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    content = sortedPosts.map((post) => <Post key={post.id} post={post} />);
   } else if (postStatus === "failed") {
     content = <div>{error}</div>;
   }

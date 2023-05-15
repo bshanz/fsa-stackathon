@@ -26,7 +26,7 @@ const EditPostForm = () => {
   const onSavePostClicked = async () => {
     if (url && description) {
       dispatch(editPost({ id: id, url, description }));
-      navigate("/");
+      navigate("/posts");
     }
   };
 

@@ -21,7 +21,7 @@ router.post("/createpost", isLoggedIn, async (req, res, next) => {
   try {
     const { userId, url, description } = req.body;
     const { data } = await getMetaData(url);
-    console.log(`eweeeeeeeeeeeeeeeeeee ${data.title}`);
+
     const user = await User.findByPk(userId); // Find the user by ID
     const newPost = await Post.create({
       userId,
