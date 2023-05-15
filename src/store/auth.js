@@ -30,6 +30,20 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   return {};
 });
 
+export const register = createAsyncThunk(
+  "auth/register",
+  async (credentials, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await axios.post("/api/register", credentials);
+      console.log(response.data.token);
+      await window.localStorage.setItem("token", response.data.token);
+      dispatch(loginWithToken());
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {},
@@ -43,6 +57,9 @@ const authSlice = createSlice({
         return action.payload;
       })
       .addCase(logout.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(register.fulfilled, (state, action) => {
         return action.payload;
       });
   },

@@ -36,21 +36,6 @@ const syncAndSeed = async () => {
     }),
   ]);
 
-  // const metaDataArray = await Promise.all([
-  //   getMetaData(
-  //     "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/"
-  //   ),
-  //   getMetaData(
-  //     "https://www.nytimes.com/interactive/2023/05/10/opinion/nyc-office-vacancy-playground-city.html"
-  //   ),
-  // ]);
-
-  // const formattedMetaData = metaDataArray.map((item) => item.data);
-
-  // console.log(`wwwwwwwwwwwwwwwwwwww${formattedMetaData}`);
-
-  // await Post.bulkCreate()
-
   const [moePost1, lucyPost1, larryPost1, ethylPost1] = await Promise.all([
     Post.create({
       title:

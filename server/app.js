@@ -16,4 +16,6 @@ app.get("/", (req, res) =>
 app.use("/api/auth", require("./api/auth"));
 app.use("/api/posts", require("./api/posts"));
 
+app.use("/api/register", require("./api/register"));
+
 module.exports = app;

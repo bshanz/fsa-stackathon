@@ -10,13 +10,13 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
+      <Navbar />
       <div className="welcome-container">
         Welcome {auth.username}!!
         <button className="logout-button" onClick={() => dispatch(logout())}>
           Logout
         </button>
       </div>
-      <Navbar />
     </div>
   );
 };

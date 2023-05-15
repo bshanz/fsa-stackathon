@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewPost } from "../store/postSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const CreatePost = () => {
   return (
     <>
       <h1>Creat Post</h1>
+      {/* <Navbar /> */}
       <Link to="/" className="link">
         Go back to Home
       </Link>
