@@ -3,7 +3,7 @@ const router = express.Router();
 const { User } = require("../db");
 const { isLoggedIn } = require("./middleware");
 
-router.get("/user", isLoggedIn, async (req, res, next) => {
+router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.user.id);
     res.json(user);
@@ -12,7 +12,7 @@ router.get("/user", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.put("/user", isLoggedIn, async (req, res, next) => {
+router.put("/", isLoggedIn, async (req, res, next) => {
   try {
     const { username, firstName, lastName, email, password } = req.body;
     const user = await User.findByPk(req.user.id);
@@ -26,9 +26,7 @@ router.put("/user", isLoggedIn, async (req, res, next) => {
           password,
         },
         {
-          where: { id: req.user.id },
           returning: true,
-          plain: true,
         }
       );
       res.json(updatedUser[1]); // Send back updated user data
@@ -39,3 +37,5 @@ router.put("/user", isLoggedIn, async (req, res, next) => {
     next(ex);
   }
 });
+
+module.exports = router;
