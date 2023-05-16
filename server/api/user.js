@@ -40,4 +40,3 @@ router.put("/user", isLoggedIn, async (req, res, next) => {
   }
 });
 
-module.exports = router;
