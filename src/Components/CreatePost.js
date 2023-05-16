@@ -26,39 +26,37 @@ const CreatePost = () => {
 
   return (
     <>
-      <h1>Share Article</h1>
-
-      <form onSubmit={onSubmit} className="create-post-form">
-        <Link to="/" className="link">
-          Go back to Home
-        </Link>
-        <div className="form-group">
-          <label htmlFor="postUrl">Article URL</label>
-          <input
-            type="text"
-            id="postUrl"
-            name="postUrl"
-            value={url}
-            onChange={onUrlChanged}
-            className="form-control"
-            placeholder="https://www.washingtonpost.com/wellness/2023/04/12/outdoor-exercise-benefits/"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="postComment">Comment (Optional)</label>
-          <textarea
-            id="postComment"
-            name="postComment"
-            value={comment}
-            onChange={onCommentChanged}
-            className="form-control"
-            placeholder="Why is it a must-read?"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary" disabled={!url}>
-          Share Article
-        </button>
-      </form>
+      <Navbar />
+      <div className="holder">
+        <form onSubmit={onSubmit} className="create-post-form">
+          <div className="form-group">
+            <label htmlFor="postUrl">Article URL</label>
+            <input
+              type="text"
+              id="postUrl"
+              name="postUrl"
+              value={url}
+              onChange={onUrlChanged}
+              className="form-control"
+              placeholder="https://www.washingtonpost.com/wellness/2023/04/12/outdoor-exercise-benefits/"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="postComment">Comment (Optional)</label>
+            <textarea
+              id="postComment"
+              name="postComment"
+              value={comment}
+              onChange={onCommentChanged}
+              className="form-control"
+              placeholder="Why is it a must-read?"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary" disabled={!url}>
+            Share Article
+          </button>
+        </form>
+      </div>
     </>
   );
 };

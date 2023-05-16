@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts, selectAllPosts } from "../store/postSlice";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 import Post from "./Post";
 
@@ -35,10 +36,7 @@ export const PostsList = () => {
 
   return (
     <section className="container post-grid">
-      <h1>Must-read Articles </h1>
-      <Link to="/" className="link">
-        Go back to Home
-      </Link>
+      <Navbar />
       {content}
     </section>
   );

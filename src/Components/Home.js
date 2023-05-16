@@ -10,7 +10,6 @@ const Home = () => {
 
   return (
     <div className="container">
-      <h1>Home</h1>
       <Navbar />
       <div className="welcome-container login-container">
         {/* Access the username from the user object */}

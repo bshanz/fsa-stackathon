@@ -4,6 +4,7 @@ import { updateUser, fetchUser } from "../store/usersSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { selectUser } from "../store/auth";
+import Navbar from "./Navbar";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -75,10 +76,8 @@ const Profile = () => {
 
   return (
     <>
+      <Navbar />
       <div className="register-container">
-        <Link to="/" className="link">
-          Go back to Home
-        </Link>
         <h2 className="register-form-title">Update Profile</h2>
         <form className="register-form" onSubmit={updateProfile}>
           <input
