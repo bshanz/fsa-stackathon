@@ -96,7 +96,7 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Must-Reads
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

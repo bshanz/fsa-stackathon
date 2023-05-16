@@ -13,7 +13,11 @@ const Home = () => {
       <Navbar />
       <div className="welcome-container login-container">
         {/* Access the username from the user object */}
-        <h2>Welcome {user ? user.firstName : ""}!!</h2>
+        <h2>Welcome {user ? user.firstName : ""}!</h2>
+        <p>
+          Share your favorite articles with your friends. Read their favorites
+          too. Enjoy the app!
+        </p>
         <button
           className="logout-button btn"
           onClick={() => dispatch(logout())}
