@@ -9,7 +9,7 @@ const EditPostForm = () => {
   const post = useSelector((state) => selectPostById(state, id));
 
   const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
+  const [comment, setComment] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,16 +17,16 @@ const EditPostForm = () => {
   useEffect(() => {
     if (post) {
       setUrl(post.url);
-      setDescription(post.description);
+      setComment(post.comment);
     }
   }, [post]);
 
   const onUrlChanged = (e) => setUrl(e.target.value);
-  const onDescriptionChanged = (e) => setDescription(e.target.value);
+  const onCommentChanged = (e) => setComment(e.target.value);
 
   const onSavePostClicked = async () => {
-    if (url && description) {
-      dispatch(editPost({ id: id, url, description }));
+    if (url) {
+      dispatch(editPost({ id: id, url, comment }));
       navigate("/posts");
     }
   };
@@ -39,7 +39,7 @@ const EditPostForm = () => {
       </Link>
       <form>
         <div className="form-group">
-          <label htmlFor="postUrl">URL:</label>
+          <label htmlFor="postUrl">Article URL:</label>
           <input
             type="text"
             id="postUrl"
@@ -51,13 +51,13 @@ const EditPostForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="postDescription">Description:</label>
+          <label htmlFor="postComment">Comment:</label>
           <textarea
-            id="postDescription"
-            name="postDescription"
-            placeholder="What's your post about?"
-            value={description}
-            onChange={onDescriptionChanged}
+            id="postComment"
+            name="postComment"
+            placeholder="Why is it a must read?"
+            value={comment}
+            onChange={onCommentChanged}
             className="form-control"
           />
         </div>

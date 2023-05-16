@@ -45,6 +45,8 @@ const syncAndSeed = async () => {
         "Greater access to the code behind generative models is fueling innovation. But if top companies get spooked, they could close up shop.",
       userId: moe.id,
       image: "https://source.unsplash.com/mWztzk66I7Q",
+      comment:
+        "Fascinating article on how open source AI models rely on big tech.",
     }),
     Post.create({
       title: "Lucy's First Post",

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { setUser } from "./usersSlice";
 import axios from "axios";
 
 export const attemptLogin = createAsyncThunk(
@@ -12,7 +13,7 @@ export const attemptLogin = createAsyncThunk(
 
 export const loginWithToken = createAsyncThunk(
   "auth/loginWithToken",
-  async () => {
+  async (_, { dispatch }) => {
     const token = window.localStorage.getItem("token");
     if (token) {
       const response = await axios.get("/api/auth", {
@@ -20,6 +21,7 @@ export const loginWithToken = createAsyncThunk(
           authorization: token,
         },
       });
+      dispatch(setUser(response.data)); // dispatch the setUser action with the user data
       return response.data;
     }
   }

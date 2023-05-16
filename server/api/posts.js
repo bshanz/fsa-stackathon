@@ -19,7 +19,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 // Route to create a new post
 router.post("/createpost", isLoggedIn, async (req, res, next) => {
   try {
-    const { userId, url, description } = req.body;
+    const { userId, url, description, comment } = req.body;
     const { data } = await getMetaData(url);
 
     const user = await User.findByPk(userId); // Find the user by ID
@@ -30,6 +30,7 @@ router.post("/createpost", isLoggedIn, async (req, res, next) => {
       title: data.title,
       image: data.image,
       userName: user.firstName,
+      comment: comment,
     }); // Include the user's first name
     res.status(201).send(newPost);
   } catch (ex) {
@@ -40,7 +41,7 @@ router.post("/createpost", isLoggedIn, async (req, res, next) => {
 // Route to edit a post
 router.put("/editpost/:id", isLoggedIn, async (req, res, next) => {
   try {
-    const { url, description } = req.body;
+    const { url, description, comment } = req.body;
     const post = await Post.findByPk(req.params.id);
 
     if (!post) {
@@ -54,6 +55,7 @@ router.put("/editpost/:id", isLoggedIn, async (req, res, next) => {
     const updatedPost = await post.update({
       url,
       description,
+      comment,
     });
 
     res.send(updatedPost);

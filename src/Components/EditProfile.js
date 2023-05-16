@@ -8,6 +8,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+  console.log(user);
   const [profileInfo, setProfileInfo] = useState({
     id: "",
     username: "",
@@ -92,7 +93,11 @@ const Profile = () => {
           />
           <input placeholder="Password" name="password" onChange={onChange} />
           <div className="button-container">
-            <button className="register-button" disabled={!allFieldsFilled}>
+            <button
+              onClick={updateProfile}
+              className="register-button"
+              disabled={!allFieldsFilled}
+            >
               Update
             </button>
           </div>

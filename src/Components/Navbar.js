@@ -12,12 +12,12 @@ const Navbar = () => {
         </li> */}
         <li className="navbar-item">
           <Link to="/posts" className="navbar-link">
-            Posts
+            Must-read Articles
           </Link>
         </li>
         <li className="navbar-item">
           <Link to="/createpost" className="navbar-link">
-            Create Post
+            Share Article
           </Link>
         </li>
         <li className="navbar-item">

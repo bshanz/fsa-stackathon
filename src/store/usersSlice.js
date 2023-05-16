@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -6,6 +6,9 @@ const initialState = {
   status: "idle",
   error: null,
 };
+
+// Add this action
+export const setUser = createAction("user/setUser");
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   const token = window.localStorage.getItem("token");
@@ -54,10 +57,14 @@ const userSlice = createSlice({
       .addCase(updateUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(setUser, (state, action) => {
+        state.user = action.payload;
+        state.status = "succeeded";
       });
   },
 });
 
 export default userSlice.reducer;
 
-export const selectUser = (state) => state.user && state.user.user;
+export const selectUser = (state) => state.auth && state.auth.user;

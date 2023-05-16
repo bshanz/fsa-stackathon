@@ -9,42 +9,31 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
+  const [comment, setComment] = useState("");
 
   // Get current logged in user's id
   const userId = useSelector((state) => state.auth.id);
 
   const onUrlChanged = (e) => setUrl(e.target.value);
-  const onDescriptionChanged = (e) => setDescription(e.target.value);
-
-  const urlRegex = new RegExp(
-    "^(https?:\\/\\/)?" + // protocol
-      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|" + // domain name
-      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-      "(\\:\\d+)?" + // port
-      "(\\/[-a-z\\d%_.~+]*)*" + // path
-      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-      "(\\#[-a-z\\d_]*)?$",
-    "i" // fragment locator
-  );
+  const onCommentChanged = (e) => setComment(e.target.value);
 
   const onSubmit = (e) => {
-    dispatch(addNewPost({ userId, url, description })); // include userId
+    dispatch(addNewPost({ userId, url, comment })); // include userId
     setUrl("");
-    setDescription("");
+    setComment("");
     navigate("/posts");
   };
 
   return (
     <>
-      <h1>Creat Post</h1>
-      {/* <Navbar /> */}
-      <Link to="/" className="link">
-        Go back to Home
-      </Link>
+      <h1>Share Article</h1>
+
       <form onSubmit={onSubmit} className="create-post-form">
+        <Link to="/" className="link">
+          Go back to Home
+        </Link>
         <div className="form-group">
-          <label htmlFor="postUrl">Url</label>
+          <label htmlFor="postUrl">Article URL</label>
           <input
             type="text"
             id="postUrl"
@@ -52,25 +41,22 @@ const CreatePost = () => {
             value={url}
             onChange={onUrlChanged}
             className="form-control"
+            placeholder="https://www.washingtonpost.com/wellness/2023/04/12/outdoor-exercise-benefits/"
           />
         </div>
         <div className="form-group">
-          <label htmlFor="postDescription">Description</label>
+          <label htmlFor="postComment">Comment (Optional)</label>
           <textarea
-            id="postDescription"
-            name="postDescription"
-            value={description}
-            onChange={onDescriptionChanged}
+            id="postComment"
+            name="postComment"
+            value={comment}
+            onChange={onCommentChanged}
             className="form-control"
-            // add pattern and required
+            placeholder="Why is it a must-read?"
           />
         </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          disabled={!url || !description}
-        >
-          Save Post
+        <button type="submit" className="btn btn-primary" disabled={!url}>
+          Share Article
         </button>
       </form>
     </>

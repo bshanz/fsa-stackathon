@@ -30,12 +30,11 @@ export const addNewPost = createAsyncThunk(
 // New thunk for editing a post
 export const editPost = createAsyncThunk(
   "posts/editPost",
-  async ({ id, url, description }) => {
-    console.log(`wwwwwwwwwwwwwwwwww ${id}`);
+  async ({ id, url, description, comment }) => {
     const token = window.localStorage.getItem("token");
     const response = await axios.put(
       `/api/posts/editpost/${id}`,
-      { url, description },
+      { url, description, comment },
       {
         headers: { Authorization: token },
       }
@@ -95,6 +94,7 @@ const postsSlice = createSlice({
         if (existingPost) {
           existingPost.url = action.payload.url;
           existingPost.description = action.payload.description;
+          existingPost.comment = action.payload.comment;
         }
       })
       .addCase(editPost.rejected, (state, action) => {

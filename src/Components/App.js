@@ -8,7 +8,7 @@ import { PostsList } from "./PostsList";
 import CreatePost from "./CreatePost";
 import EditPostForm from "./EditPostForm";
 import Register from "./Register";
-import Profile from "./Profile";
+import Profile from "./EditProfile";
 
 const App = () => {
   const auth = useSelector((state) => state.auth);

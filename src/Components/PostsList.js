@@ -34,8 +34,8 @@ export const PostsList = () => {
   }
 
   return (
-    <section className="container">
-      <h1>Posts</h1>
+    <section className="container post-grid">
+      <h1>Must-read Articles </h1>
       <Link to="/" className="link">
         Go back to Home
       </Link>
