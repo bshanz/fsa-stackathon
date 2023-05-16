@@ -9,8 +9,11 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+  const userData = useSelector((state) => state.users.user);
+  console.log(userData);
+  const [isLoading, setIsLoading] = useState(true);
+  //console.log(user);
 
-  console.log(user);
   const [profileInfo, setProfileInfo] = useState({
     id: "",
     username: "",
@@ -21,21 +24,26 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchUser());
+    const fetchData = async () => {
+      await dispatch(fetchUser());
+      setIsLoading(false);
+    };
+    fetchData();
   }, [dispatch]);
 
   useEffect(() => {
-    if (user) {
+    console.log(userData);
+    if (userData) {
       setProfileInfo({
-        id: user.id,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
+        id: userData.id,
+        username: userData.username,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
         password: "",
       });
     }
-  }, [user]);
+  }, [userData]);
 
   const allFieldsFilled = Object.values(profileInfo).every(
     (field) => field !== ""
@@ -60,6 +68,10 @@ const Profile = () => {
       }
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

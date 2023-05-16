@@ -1,18 +1,20 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { logout } from "../store";
 import Navbar from "./Navbar";
 
 const Home = () => {
-  const { auth } = useSelector((state) => state);
+  // Get the user from the users slice of the state
+  const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
+
   return (
     <div className="container">
       <h1>Home</h1>
       <Navbar />
       <div className="welcome-container login-container">
-        <h2>Welcome {auth.username}!!</h2>
+        {/* Access the username from the user object */}
+        <h2>Welcome {user ? user.firstName : ""}!!</h2>
         <button
           className="logout-button btn"
           onClick={() => dispatch(logout())}

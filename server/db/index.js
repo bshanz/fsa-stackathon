@@ -49,22 +49,35 @@ const syncAndSeed = async () => {
         "Fascinating article on how open source AI models rely on big tech.",
     }),
     Post.create({
-      title: "Lucy's First Post",
-      url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
-      description: "This is Lucy's first post!",
+      title: "Will Chatbots Replace Money Managers?",
+      url: "https://www.bloomberg.com/opinion/articles/2023-05-16/crash-course-how-soon-will-ai-replace-money-managers?srnd=premium&leadSource=uverify%20wall",
+      description:
+        "The science and art of successful investing for institutions and individuals could be in AI’s crosshairs.",
       userId: lucy.id,
+      image:
+        "https://images.unsplash.com/photo-1579227114347-15d08fc37cae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4NDA5MDg2Mg&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
+      comment: "AI putting more jobs at risk!",
     }),
     Post.create({
-      title: "Larry's First Post",
-      url: "https://www.washingtonpost.com/opinions/2023/05/10/mothers-day-fathers-day-parenting-joy/",
-      description: "This is Larry's first post!",
+      title: "Get Ready for Tim Cook's Riskiest Move at Apple",
+      url: "https://www.bloomberg.com/opinion/articles/2023-05-16/apple-s-tim-cook-takes-a-risk-on-mixed-reality-headsets-and-the-metaverse?srnd=premium&leadSource=uverify%20wall",
+      description:
+        "Just as everyone seems to be tiring of the metaverse, Steve Jobs’ successor comes up with the company’s first mixed reality headset.",
       userId: larry.id,
+      image:
+        "https://images.unsplash.com/photo-1576633587382-13ddf37b1fc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4NDI0NjQxOQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
+      comment: "Apple is about to change the game in VR.",
     }),
     Post.create({
-      title: "Ethyl's First Post",
+      title:
+        "26 Empire State Buildings Could Fit Into New York’s Empty Office Space. That’s a Sign.",
       url: "https://www.nytimes.com/interactive/2023/05/10/opinion/nyc-office-vacancy-playground-city.html",
-      description: "This is Ethyl's first post!",
+      description:
+        "New York is undergoing a metamorphosis from a city dedicated to productivity to one built around pleasure. Many office buildings still feel eerily empty, with occupancy around 50 percent of prepandemic levels, harming landlords and the local economy.",
       userId: ethyl.id,
+      image:
+        "https://images.unsplash.com/photo-1518235506717-e1ed3306a89b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4NDI0NjUzOA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080",
+      comment: "Remote work is here to stay.",
     }),
   ]);
 

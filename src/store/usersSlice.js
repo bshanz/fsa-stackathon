@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { fetchPost } from "./postSlice";
 
 const initialState = {
   user: null,
@@ -18,13 +19,35 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   return response.data;
 });
 
+// export const updateUser = createAsyncThunk(
+//   "user/updateUser",
+//   async (updatedUser, { dispatch }) => {
+//     const token = window.localStorage.getItem("token");
+//     const response = await axios.put("/api/user", updatedUser, {
+//       headers: { Authorization: token },
+//     });
+//     // Fetch the updated user again after updating it
+//     dispatch(fetchUser());
+//     return response.data;
+//   }
+// );
 export const updateUser = createAsyncThunk(
   "user/updateUser",
-  async (updatedUser) => {
+  async (updatedUser, { dispatch, getState }) => {
     const token = window.localStorage.getItem("token");
     const response = await axios.put("/api/user", updatedUser, {
       headers: { Authorization: token },
     });
+
+    // Fetch the updated user again after updating it
+    dispatch(fetchUser());
+
+    // Fetch the posts again to get the updated user data in posts
+    const posts = getState().posts.posts;
+    for (let post of posts) {
+      dispatch(fetchPost(post.id));
+    }
+
     return response.data;
   }
 );
@@ -52,7 +75,6 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = { ...state.user, ...action.payload }; // assuming the payload is the updated user data
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.status = "failed";
