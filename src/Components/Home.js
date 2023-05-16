@@ -8,6 +8,8 @@ const Home = () => {
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
 
+  console.log("yeah");
+
   return (
     <div className="container">
       <Navbar />
