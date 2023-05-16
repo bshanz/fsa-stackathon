@@ -11,6 +11,7 @@ Must-reads is a web app for sharing your favorite articles.
 ## Features
 
 - Login
+- Logout
 - Register
 - Share article
 - Edit article
