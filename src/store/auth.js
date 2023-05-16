@@ -2,6 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setUser } from "./usersSlice";
 import axios from "axios";
 
+const initialState = {
+  user: null,
+  status: "idle",
+  error: null,
+};
+
 export const attemptLogin = createAsyncThunk(
   "auth/attemptLogin",
   async (credentials, { dispatch }) => {
@@ -63,8 +69,16 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         return action.payload;
+      })
+      .addCase(setUser, (state, action) => {
+        state.user = action.payload;
+        state.status = "succeeded";
       });
   },
 });
 
 export default authSlice.reducer;
+
+export const selectUser = (state) => state.auth.user;
+
+// add pending status for setuser and fetchuser

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser, selectUser, fetchUser } from "../store/usersSlice";
+import { updateUser, fetchUser } from "../store/usersSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { selectUser } from "../store/auth";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+
   console.log(user);
   const [profileInfo, setProfileInfo] = useState({
     id: "",
