@@ -2,6 +2,12 @@
 
 Must-reads is a web app for sharing your favorite articles.
 
+## Usage
+
+- Deployed here: 
+- Login with username: Moe password: 123
+- Or register a new user
+
 ## Installation
 
 - npm i
