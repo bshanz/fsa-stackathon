@@ -11,6 +11,8 @@ const CreatePost = () => {
   const [url, setUrl] = useState("");
   const [comment, setComment] = useState("");
 
+  console.log("hello");
+
   // Get current logged in user's id
   const userId = useSelector((state) => state.auth.id);
 
